@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Provides the appropriate {@link Fragment} for a view pager.
  */
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
+    private static final int FRAG_COUNT = 3;
 
     public SimpleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -30,21 +31,24 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            return new MondayFragment();
-        } else if (position == 1){
-            return new TuesdayFragment();
-        } else if (position == 2) {
-            return new WednesdayFragment();
-        } else if (position == 3) {
-            return new ThursdayFragment();
-        } else {
-            return new FridayFragment();
+        Fragment frag = null;
+        switch(position) {
+            case 0: frag = new MondayFragment();
+                    break;
+            case 1: frag =  new TuesdayFragment();
+                    break;
+            case 2: frag = new WednesdayFragment();
+                    break;
+
+            }
+        if (frag == null) {
+            throw new IllegalArgumentException("No matching fragment");
         }
+        return frag;
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return FRAG_COUNT;
     }
 }
