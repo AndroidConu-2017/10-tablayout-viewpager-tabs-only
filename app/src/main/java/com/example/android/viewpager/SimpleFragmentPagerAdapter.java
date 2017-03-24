@@ -24,6 +24,11 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     private static final int FRAG_COUNT = 3;
+    protected String[] titles = new String[]{"Mon", "Tues", "Weds", "Thurs", "Fri"};
+
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
+    }
 
     public SimpleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -39,7 +44,6 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
                     break;
             case 2: frag = new WednesdayFragment();
                     break;
-
             }
         if (frag == null) {
             throw new IllegalArgumentException("No matching fragment");
